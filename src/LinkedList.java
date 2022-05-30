@@ -9,7 +9,7 @@ public class LinkedList {
     }
 
     public void insertFirst(Object object) {
-
+    if(isEmpty())
 
 
     }
@@ -19,7 +19,8 @@ public class LinkedList {
     }
 
     public void print() {
-        for (Element firstElement:NextElement){
+        while (firstElement.getNextElement() != null){
+            System.out.println();
 
 
         }
@@ -39,7 +40,14 @@ public class LinkedList {
 
         public Object getLastObject () {
 
-        }
+        Element sustitutoDeFirstElement =firstElement; //La creacion del "cursor" que recorre la lista y sustituye el
+            //first element para que no tenga que modificarse y poder hacer muchos metodos seguidos.
+
+        while(sustitutoDeFirstElement.getNextElement() != null){
+            sustitutoDeFirstElement=sustitutoDeFirstElement.getNextElement();
+            }
+
+            return sustitutoDeFirstElement; }
 
         public Object getObjectAtPosition ( int i){
 
