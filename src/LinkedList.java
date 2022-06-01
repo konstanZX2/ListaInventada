@@ -5,11 +5,17 @@ public class LinkedList {
 
 
     public LinkedList() {
-        LinkedList linkedList = new LinkedList();
+
     }
 
     public void insertFirst(Object object) {
-    if(isEmpty())
+        Element nuevoPrimerElemento = new Element(object);
+        if(firstElement==null){
+            firstElement=nuevoPrimerElemento;
+        }
+
+            nuevoPrimerElemento.setNextElement(firstElement);
+            firstElement=nuevoPrimerElemento;
 
 
     }
@@ -19,13 +25,18 @@ public class LinkedList {
     }
 
     public void print() {
-        while (firstElement.getNextElement() != null){
-            System.out.println();
 
+        if (isEmpty()){
+            System.out.println("No hay nah");
 
         }
+        Element sustitutoDeFirstElement = firstElement;
+        while (sustitutoDeFirstElement != null){
+            System.out.println(sustitutoDeFirstElement.getObject());
+            sustitutoDeFirstElement=sustitutoDeFirstElement.getNextElement();
 
-    }
+        }
+        }
 
     public boolean isEmpty() {
         return firstElement == null;
@@ -41,7 +52,7 @@ public class LinkedList {
         public Object getLastObject () {
 
         Element sustitutoDeFirstElement =firstElement; //La creacion del "cursor" que recorre la lista y sustituye el
-            //first element para que no tenga que modificarse y poder hacer muchos metodos seguidos.
+            //first element para que no tenga que modificarse, y que pueda hacer muchos metodos seguidos.
 
         while(sustitutoDeFirstElement.getNextElement() != null){
             sustitutoDeFirstElement=sustitutoDeFirstElement.getNextElement();
@@ -51,7 +62,7 @@ public class LinkedList {
 
         public Object getObjectAtPosition ( int i){
 
-        }
+        return null;}
 
         private class Element {
 
