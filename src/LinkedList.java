@@ -1,15 +1,18 @@
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
-public class LinkedList {
-    Element firstElement;
+public class LinkedList<E> {
+    Element<E> firstElement;
 
 
     public LinkedList() {
 
     }
 
-    public void insertFirst(Object object) {
-        Element nuevoPrimerElemento = new Element(object);
+    public void insertFirst(E object) {
+        Element<E> nuevoPrimerElemento = new Element<E>(object);
 
         if (firstElement == null) {
             firstElement = nuevoPrimerElemento;
@@ -23,9 +26,17 @@ public class LinkedList {
 
     }
 
-    public void insertLast(Object object) {
-        Element nuevoUltimoElemento = new Element(object);
-
+    public void insertLast(E object) {
+        Element<E> nuevoUltimoElemento = new Element<E>(object);
+        if (isEmpty()){
+            firstElement = new Element<E>(object);
+        }else{
+            Element<E> element = firstElement;
+            while (element.getNextElement() != null){
+                element= element.getNextElement();
+            }
+            element.setNextElement(new Element<E>(object));
+        }
 
         }
 
@@ -71,22 +82,32 @@ public class LinkedList {
     }
 
     public Object getObjectAtPosition(int i) {
+        int contador=1;
+        Element<E> element = firstElement;
+        while(element.getNextElement() != null){
+            if (contador==1){
+                break;
+            }else {
+                element = element.getNextElement();
+            }
+            contador++;
+        }
 
-        return null;
+        return element.getObject();
     }
 
-    private class Element {
+    private class Element<E> {
 
-        Element nextElement = null;
-        Object object;
+        Element<E> nextElement = null;
+        E object;
 
 
-        public Element(Object newObject) {
+        public Element(E newObject) {
             this.object = newObject;
 
         }
 
-        public void setNextElement(Element newNextElement) {
+        public void setNextElement(Element<E> newNextElement) {
             this.nextElement = newNextElement;
 
         }
@@ -100,7 +121,7 @@ public class LinkedList {
             return object;
         }
 
-        public void setObject(Object newObject) {
+        public void setObject(E newObject) {
             object = newObject;
         }
 
