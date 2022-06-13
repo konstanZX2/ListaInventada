@@ -14,22 +14,26 @@ public class LinkedList<E> {
     public void insertFirst(E object) {
         Element<E> nuevoPrimerElemento = new Element<E>(object);
 
-        if (firstElement == null) {
-            firstElement = nuevoPrimerElemento;
-
-        }else{
+        nuevoPrimerElemento.setNextElement(firstElement);
+        firstElement = nuevoPrimerElemento;
 
 
-            nuevoPrimerElemento.setNextElement(firstElement);
-            firstElement = nuevoPrimerElemento;
-        }
+//        if (firstElement == null) {
+//            firstElement = nuevoPrimerElemento;
+//
+//        }else{
+//
+//
+//            nuevoPrimerElemento.setNextElement(firstElement);
+//            firstElement = nuevoPrimerElemento;
+//        }
 
     }
 
     public void insertLast(E object) {
         Element<E> nuevoUltimoElemento = new Element<E>(object);
         if (isEmpty()){
-            firstElement = new Element<E>(object);
+            firstElement = nuevoUltimoElemento;
         }else{
             Element<E> element = firstElement;
             while (element.getNextElement() != null){
@@ -50,7 +54,6 @@ public class LinkedList<E> {
         }
         Element sustitutoDeFirstElement = firstElement;
         while (sustitutoDeFirstElement != null) {
-
             System.out.println(sustitutoDeFirstElement.getObject());
             sustitutoDeFirstElement = sustitutoDeFirstElement.getNextElement();
 
@@ -62,7 +65,23 @@ public class LinkedList<E> {
     }
 
     public void remove(Object object) {
-
+        if (isEmpty()) {
+            System.out.println("No hay nada");
+        } else {
+            Element<E> element = firstElement;
+            Element<E> elementAnterior = null;
+            while (element != null) {
+                if (element.getObject().equals(object)) {
+                    if (elementAnterior == null) {
+                        firstElement = element.getNextElement();
+                    } else {
+                        elementAnterior.setNextElement(element.getNextElement());
+                    }
+                }
+                elementAnterior = element;
+                element = element.getNextElement();
+            }
+        }
     }
 
     public Object getFirstObject() {

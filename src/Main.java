@@ -9,8 +9,8 @@ String estring1= "tupadre";
 String estring2="tuprimo";
 lista.insertFirst(estring);
 lista.insertFirst(estring1);
-lista.insertFirst(estring2);
-        lista.print();
+lista.insertLast(estring2);
+lista.print();
 
     }
 }
